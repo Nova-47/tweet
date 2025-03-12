@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>All Tweets</h1>
+    <ul>
+        {% for tweet in tweets %}
+            <li>
+                <strong>{{ tweet.user.username }}</strong>: {{ tweet.payload }} <br>
+                <small>Posted on: {{ tweet.created_at }}</small>
+                ❤️ Likes: {{ tweet.likes.count }}
+            </li>
+        {% empty %}
+            <li>No tweets available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

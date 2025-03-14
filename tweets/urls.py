@@ -1,7 +1,6 @@
-from django.urls import path, include
 from django.urls import path
-from . import views
+from .views import AllTweetsView, UserTweetsView
 
 urlpatterns = [
-    path("tweets/", views.all_tweets, name="all_tweets"),  # 모든 트윗 리스트
+    path("tweets/", AllTweetsView.as_view(), name="all_tweets"),
 ]

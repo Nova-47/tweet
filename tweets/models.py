@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Tweet(models.Model):
-    payload = models.TextField(max_length=180)  # 트윗 내용
+    payload = models.TextField()  # 트윗 내용
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="tweets"
     )
@@ -25,3 +25,8 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} liked '{self.tweet.payload[:5]}...'"
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["user", "tweet"], name="unique_like")
+        ]
